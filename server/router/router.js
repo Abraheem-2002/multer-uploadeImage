@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require('multer')
+const ImageController = require('../controller/ImageController')
 const path = require('path')
 const fs = require("fs") 
 
@@ -19,16 +20,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-
-router.post("/image",upload.single("pic"), (req,res) =>{
-        try {
-            console.log(req.file);
-            res.status(200)
-        } catch (error) {
-            console.log(error);
-        }
-    
-})
+router.post('/image',upload.single('pic'),ImageController.UploadImage)
+router.get('/getImage',ImageController.getImage);
 
 
 module.exports = router;
+// router.post("/image",upload.single("pic"), (req,res) =>{
+//         try {
+//             console.log(req.file);
+//             res.status(200)
+//         } catch (error) {
+//             console.log(error);
+//         }
+    
+// })
+
+

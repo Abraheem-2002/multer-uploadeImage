@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import './App.css'
 
 function App() {
   const [image ,setImage] = React.useState(null);
+  const [path ,setPath] = React.useState([]);
 
   const uploadImage = async() =>{
     const form = new FormData;
@@ -15,10 +16,33 @@ function App() {
     })
   }
 
+  const getImage = async() =>{
+    await axios.get('http://localhost:1010/getImage').then((res)=>{
+    console.log(res.data.data);
+    setPath(res.data.data);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  useEffect(()=>{
+    getImage();
+  },[])
+
   return (
     <>
       <input onChange={e => setImage(e.target.files[0])} type="file" className=''/>
       <button onClick={uploadImage}>send</button>
+      <hr/>
+      <hr/>
+      {
+        path?.map((index,key)=>{
+        <div key={key} >
+          <img src={index.path}/>
+        </div>
+        })
+      }
+      
     </>
   )
 }
