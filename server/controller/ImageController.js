@@ -3,7 +3,7 @@ const ImageModel = require('../model/ImageModel');
 
 exports.UploadImage = async(req,res) => {
     try {
-        const path = req.file.path;
+        const path = req.file;
         if(!path){
             return res.status(500).send({
                 msg : 'please upload the image',
@@ -38,9 +38,9 @@ exports.UploadImage = async(req,res) => {
     }
 }
 
-exports.getImage = (req,res) => {
+exports.getImage = async(req,res) => {
 try {
-    const image = ImageModel.find()
+    const image = await ImageModel.find()
     if (image){
         return res.status(200).send({
             msg : '',
