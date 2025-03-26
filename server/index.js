@@ -10,14 +10,14 @@ const port = 1010
 
 dotenv.config();
 
-app.use(express.static(path.join(__dirname,"/public")));
+app.use('/public',express.static(path.join(__dirname,"/public")));
 
 
 mongoose.connect(process.env.CONNACTION_STRING,{
     useNewUrlparser : true,
     useUnifiedTopology : true,
 }).then(()=>{
-    console.log("Seccsesfull connected");
+    console.log("Successfully connected");
 }).catch((err) =>{
     console.log(err);
 })
