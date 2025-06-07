@@ -12,7 +12,6 @@ dotenv.config();
 
 app.use('/public',express.static(path.join(__dirname,"/public")));
 
-
 mongoose.connect(process.env.CONNACTION_STRING,{
     useNewUrlparser : true,
     useUnifiedTopology : true,

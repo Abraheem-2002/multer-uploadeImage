@@ -24,7 +24,6 @@ const upload = multer({ storage: storage })
 //Upload Images
 router.post('/image',upload.single('pic'),async (req,res) =>{
 console.log(req.file);
-
 const normalizedFilePath = req.file.path.replace(/\\/g, '/');
 await ImageModel.create({
     path : normalizedFilePath,
@@ -48,8 +47,9 @@ await ImageModel.create({
 // get Images
 router.get('/getImage',async (req,res)=>{
 
-    const image = ImageModel.find();
+    // const image = ImageModel.find();
     await ImageModel.find().then((data) =>{
+        console.log(data);
         return res.status(200).send({
             msg : '',
             stete : 1,

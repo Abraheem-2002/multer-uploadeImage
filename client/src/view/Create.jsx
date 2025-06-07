@@ -14,16 +14,25 @@ export const Create = () => {
         }).catch((error) =>{
             console.log(error);
         })
-        }
+        }       
 
     return (
         <>
-            <input onChange={e => setImage(e.target.files[0])} type="file" className=''/>
-            <button onClick={uploadImage}>send</button>
-            <hr/>
-            <hr/>
-            <hr/>
-            <hr/>
+        <hr/>
+        <hr/>
+        <hr/>
+        <div>
+                <h1>Welcome to Image</h1>
+                <p>here you can upload the image and you can see it </p>
+                <input onChange={e => setImage(e.target.files[0])} type="file" style={{backgroundColor:"blue"}}/>
+                <div>
+                <button onClick={uploadImage} style={{gap:6}}>send</button>
+                </div>
+        </div>
+        <hr/>
+        <hr/>
+        <hr/>
+        <hr/>
             <Link to={'/home'}>CLICK ON ME TO TAKE YOU TO THE HOME PAGE</Link>
         </>
     )
